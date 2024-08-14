@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
+class WelcomeWidget extends StatelessWidget {
+  const WelcomeWidget({super.key, required this.title});
 
   final String title;
 
@@ -11,6 +11,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(109, 96, 248, 1),
       body: Container(
+        width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/background_home.png'),
@@ -18,6 +19,7 @@ class MyHomePage extends StatelessWidget {
           )
         ),
         child: const Column(
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Column(
@@ -69,7 +71,6 @@ class _LogInButtonState extends State<_LogInButton> {
 
   void _moveToAuth (){
     final navigator = Navigator.of(context);
-
     navigator.pushNamed('/auth');
   }
 
@@ -91,26 +92,29 @@ class _LogInButtonState extends State<_LogInButton> {
     return ElevatedButton(
         style: buttonStyle,
         onPressed: _moveToAuth,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-                'Log in',
-                style: TextStyle(
-                    color: Color.fromRGBO(109, 96, 248, 1),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600
-                )
-            ),
-            IconButton(
-              icon: const Icon(Icons.arrow_forward_ios),
-              color: Colors.white,
-              onPressed: () {},
-              style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll<Color>(Color.fromRGBO(109, 96, 248, 1))
+        child: SizedBox(
+          width: 200,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              const Text(
+                  'Log in',
+                  style: TextStyle(
+                      color: Color.fromRGBO(109, 96, 248, 1),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600
+                  )
               ),
-            ),
-          ],
+              IconButton(
+                icon: const Icon(Icons.arrow_forward_ios),
+                color: Colors.white,
+                onPressed: _moveToAuth,
+                style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll<Color>(Color.fromRGBO(109, 96, 248, 1))
+                ),
+              ),
+            ],
+          ),
         )
     );
   }
